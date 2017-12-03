@@ -1,0 +1,22 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "main",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quitedensepoint/screeps.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quitedensepoint/screeps/issues"
+  },
+  "homepage": "https://github.com/quitedensepoint/screeps#readme",
+  "dependencies": {
+    "object.values": "^1.0.4"
+  }
+}
