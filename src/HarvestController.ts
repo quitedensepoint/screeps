@@ -1,30 +1,29 @@
-Object.values = obj => Object.keys(obj).map(key => obj[key]);
-const Harvester = require('Harvester');
-const HarvestSource = require('HarvestSource');
+import Harvester from "./Harvester";
+import HarvestSource from "./HarvestSource";
 
 const HarvestController = function() {
-    /* 
+    /*
     Track harvest operations here.
     We want a record of all energy sources in the room as well as the harvesters assigned to them.
     */
 
-    let harvesters = [];
+    const harvesters = [];
 
-    const harvestSources = Object.values(Game.rooms).filter(function(room) {
+    const harvestSources = Object.values(Game.rooms).filter((room) => {
         return room.controller.my === true;
-    }).map(function(room) {
-        return Object.values(room.find(FIND_SOURCES)).map(function(source) {
+    }).map((room) => {
+        return Object.values(room.find(FIND_SOURCES)).map((source) => {
             return new HarvestSource(source);
         });
     });
 
-    const constructHarvester = function(harvestSource) {
+    const constructHarvester = (harvestSource) => {
         // Calculate body parts required
         // energy cost = 50(3W + 2ceil(w/50))
         const desiredWorkerParts = Math.ceil(harvestSource.source.energyCapacity / (600 - 2 * harvestSource.dropoffDistance));
         const affordableWorkerParts = Math.floor(harvestSource.source.room.energyAvailable / 152);
 
-        let workerPartsToUse = desiredWorkerParts;
+        const workerPartsToUse = desiredWorkerParts;
 
         if (affordableWorkerParts < desiredWorkerParts) {
             workerPartsToUse = affordableWorkerParts;
@@ -78,4 +77,4 @@ const HarvestController = function() {
     }
 }
 
-module.exports = HarvestController;
+export default { HarvestController };
