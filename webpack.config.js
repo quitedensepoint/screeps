@@ -7,14 +7,14 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.bundle.js'
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js'] 
+    },
     module: {
         loaders: [
             {
                 test: /\.ts$/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['es2015']
-                }
+                loader: 'ts-loader'
             }
         ]
     },
