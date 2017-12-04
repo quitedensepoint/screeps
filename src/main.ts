@@ -1,7 +1,9 @@
-import HarvestController from './HarvestController'
+import * as configuration from "./config";
 
-const loop = () => {
-    HarvestController().run();
-}
+const loop = ((config) => {
+    // Check the state of the world
+    // If there is any opportunity to expand territory
+    return config;
+})(configuration);
 
-export default { loop };
+export { loop };

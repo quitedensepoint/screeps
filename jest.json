@@ -1,0 +1,27 @@
+{
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "coverageThreshold": {
+        "global": {
+            "branches": 100,
+            "functions": 100,
+            "lines": 100,
+            "statements": 100
+        }
+    },
+    "collectCoverageFrom": [
+        "src/*.ts",
+        "!**/node_modules/**"
+    ],
+    "notify": false,
+    "moduleDirectories": [
+        "node_modules",
+        "src"
+    ],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "tests/.*\\.(ts)$",
+    "mapCoverage": true
+}

@@ -1,4 +1,4 @@
-const Harvester = function(creepArg, targetHarvestSourceArg) {
+const Harvester: (creep: Creep, source: Source) => Creep = (creepArg: Creep, targetHarvestSourceArg: Source) => {
     const creep = creepArg;
     const targetHarvestSource = targetHarvestSourceArg;
 
@@ -13,7 +13,7 @@ const Harvester = function(creepArg, targetHarvestSourceArg) {
         SPAWNING: 5
     };
 
-    const getState = function(states, creep, targetHarvestStorage, storage) {
+    const getState = (states, creep, targetHarvestStorage, storage) => {
         if (creep.spawning === true) {
             return states.SPAWNING;
         }
@@ -39,37 +39,31 @@ const Harvester = function(creepArg, targetHarvestSourceArg) {
         return states.IDLE;
     }
 
-    const run = (function(states, creep, targetHarvestSource, storage) {
+    const run = ((states, creep, targetHarvestSource, storage) => {
         // Update harvester state
         const currentState = getState(states, creep, targetHarvestSource, storage);
 
-        console.log(JSON.stringify(creep));
-
-        switch(currentState) {
+        switch (currentState) {
             case(states.SPAWNING):
                 break;
             case(states.GOING_TO_SOURCE):
-                creep.moveTo(targetHarvestSource)
-                break
+                return creep.moveTo(targetHarvestSource);
             case(states.GOING_TO_STORAGE):
-                creep.moveTo(storage);
-                break;
+                return creep.moveTo(storage);
             case(states.HARVESTING):
-                creep.harvest(targetHarvestSource);
-                break;
+                return creep.harvest(targetHarvestSource);
             case(states.STORING):
-                creep.transfer(storage, RESOURCE_ENERGY);
-                break;
+                return creep.transfer(storage, RESOURCE_ENERGY);
             case(states.IDLE):
-                creep.moveTo(targetHarvestSource);
+                return creep.moveTo(targetHarvestSource);
         }
 
-        return this;
-    })(states, creep, targetHarvestSource, storage).bind(this);
+        return -1000;
+    })(states, creep, targetHarvestSource, storage);
 
     return {
-        run
-    }
-}
+        run,
+    };
+};
 
-module.exports = Harvester;
+export default { Harvester };
