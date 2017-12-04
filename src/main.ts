@@ -1,9 +1,9 @@
-import * as configuration from "./config";
+import { configuration } from "./config";
 
-const loop = ((config) => {
+const loop = (strategy = configuration()) => {
     // Check the state of the world
     // If there is any opportunity to expand territory
-    return config;
-})(configuration);
+    return strategy;
+};
 
 export { loop };
